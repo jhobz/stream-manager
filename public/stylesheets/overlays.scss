@@ -1,0 +1,343 @@
+/* Variables */
+/* Layout base colors */
+// TODO: Move base colors to common variables file
+$colorPrimary: #1976d2;
+$colorAccent: something;
+$colorFontPrimary: #f1f1f1;
+$colorFontInvert: #333;
+$colorFontDisabled: #666;
+
+/* Backgrounds */
+$bgProgressBarInner: $colorPrimary;
+$bgProgressBarInnerComplete: gold;
+$bgProgressBarOuter: white;
+$bgScheduleDay: rgba( 255, 255, 255, 0.7 );
+$bgScheduleDayActive: rgba( 25, 118, 210, 0.7 );
+$bgScheduleDayInactive: rgba( 64, 64, 64, 0.7 );
+$bgSocial: rgba( 255, 255, 255, 0.7 );
+$bgSocialAccentDefault: gold; // Unused
+$bgVideoOverlay: rgba( 0, 0, 0, 0.6 );
+
+/* Colors */
+$colorsSocial: (
+	twitter: #1da1f2,
+	twitch: #6441a4,
+	youtube: #cd201f
+);
+
+/* Sizes */
+$widthSocial: 250px;
+$heightSocial: 100px;
+$heightSocialAccent: 10px;
+
+/* Animation-related variables */
+$numSocialItems: 3;
+$durationItemCycle: 12s;
+$durationFullCycle: $numSocialItems * $durationItemCycle;
+$durationSlide: 1s;
+$durationDetail: 0.5s;
+$percentItemCycleEnd: 1 / $numSocialItems * 100;
+$percentSlide: $durationSlide / $durationFullCycle * 100;
+$percentDetail: $durationDetail / $durationItemCycle * 100;
+$percentDetailDelay: $durationSlide / $durationItemCycle * 100;
+
+/* Animations */
+/* Header pulse */
+@keyframes pulse {
+	from { transform: scale( 1, 1 ); }
+	to { transform: scale( 1.1, 1.1 ); }
+}
+
+/* Progress bar */
+@keyframes loading {
+	from { background-position: 0 0; }
+	to { background-position: 25px 25px; }
+}
+
+/* Social items */
+// All height attributes are a hack to simulate toggling display: none;
+// TODO: Make social items occupy the same space via positioning so as not to
+//       need this height hack.
+@keyframes social-container {
+	0% {
+		margin-left: -$widthSocial;
+		height: 0;
+	}
+	0.001% {
+		height: $heightSocial;
+	}
+	#{$percentSlide}% {
+		margin-left: 0;
+	}
+	#{$percentItemCycleEnd - $percentSlide}% {
+		margin-left: 0;
+	}
+	#{$percentItemCycleEnd}% {
+		margin-left: -$widthSocial;
+		height: $heightSocial;
+	}
+	#{$percentItemCycleEnd + 0.001}% {
+		height: 0;
+	}
+	100% {
+		margin-left: -$widthSocial;
+		height: 0;
+	}
+}
+
+@keyframes social-content {
+	0%, #{$percentDetailDelay}% {
+		opacity: 0;
+	}
+	#{$percentDetailDelay + $percentDetail}% {
+		opacity: 1;
+	}
+	#{100 - $percentDetailDelay - $percentDetail}% {
+		opacity: 1;
+	}
+	#{100 - $percentDetailDelay}%, 100% {
+		opacity: 0;
+	}
+}
+
+@keyframes social-accent {
+	0%, #{$percentDetailDelay}% {
+		height: 0;
+	}
+	#{$percentDetailDelay + $percentDetail}% {
+		height: $heightSocialAccent;
+	}
+	#{100 - $percentDetailDelay - $percentDetail}% {
+		height: $heightSocialAccent;
+	}
+	#{100 - $percentDetailDelay}%, 100% {
+		height: 0;
+	}
+}
+
+body {
+	background: transparent;
+}
+
+.overlay-background {
+	position: fixed;
+	background-color: $bgVideoOverlay;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}
+
+/* Fullscreen background video */
+video.overlay-background-video {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	transform: translate( -50%, -50% );
+	// filter: blur( 3px );
+}
+
+.overlay-container {
+	color: $colorFontPrimary;
+
+	.overlay-social-container {
+		margin-top: 20px;
+
+		.overlay-social-item {
+			display: flex;
+			position: relative;
+			background-color: $bgSocial;
+			color: $colorFontInvert;
+			justify-content: center;
+			align-items: center;
+			width: $widthSocial;
+			height: 0; // Needed to simulate display: none;
+			margin-left: -$widthSocial;
+			animation: social-container $durationFullCycle ease infinite;
+
+			@for $i from 1 through $numSocialItems {
+				&:nth-child( #{$i} ) {
+					animation-delay: ( $i - 1 ) * $durationItemCycle;
+				}
+
+			}
+
+			.overlay-social-logo {
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+				width: 50px;
+				height: 50px;
+				opacity: 0;
+				animation: social-content 12s ease-out infinite;
+			}
+
+			@each $name, $color in $colorsSocial {
+				&.#{$name} {
+					.overlay-social-logo {
+						background-image: url( '/images/logo-#{$name}.png' );
+					}
+					// sass-lint:disable variable-for-property
+					.overlay-social-accent {
+						background-color: $color;
+					}
+				}
+			}
+
+			.overlay-social-text {
+				padding: 15px;
+				min-width: 80px;
+				font-size: 1.75em;
+				opacity: 0;
+				animation: social-content 12s ease-out infinite;
+			}
+
+			.overlay-social-accent {
+				position: absolute;
+				background-color: $bgSocialAccentDefault;
+				height: 0; // $heightSocialAccent
+				bottom: 0;
+				left: 0;
+				right: 0;
+				animation: social-accent 12s ease-out infinite;
+			}
+		}
+	}
+
+	.overlay-header-container {
+		position: absolute;
+		// padding: 20px;
+		top: 50%;
+		left: 50%;
+		transform: translate( -50%, -50% );
+		text-align: center;
+
+		.overlay-header {
+			font-size: 4em;
+			animation: pulse 1.2s ease-in infinite;
+			animation-direction: alternate;
+		}
+
+		.overlay-progress-bar-outer {
+			position: relative;
+			background-color: $bgProgressBarOuter;
+			border: 2px solid white;
+			width: 800px;
+			height: 50px;
+			overflow: hidden;
+		}
+
+		.overlay-progress-bar-inner {
+			height: 50px;
+			margin-left: -27px;
+			background-color: $bgProgressBarInnerComplete;
+			background-image: linear-gradient(
+				to bottom,
+				rgba( 0, 0, 0, 0 ) 0%,
+				rgba( 0, 0, 0, 0.6 ) 100%
+			);
+			transform: skewX( -45deg );
+			overflow: hidden;
+
+			// TODO: Move barbershop pole animation to mixin
+			&::before {
+				position: absolute;
+				content: '';
+				background-image: linear-gradient(
+					-45deg,
+					rgba( 0, 0, 0, 0.1 ) 25%,
+					transparent 25%,
+					transparent 50%,
+					rgba( 0, 0, 0, 0.1 ) 50%,
+					rgba( 0, 0, 0, 0.1 ) 75%,
+					transparent 75%,
+					transparent
+				);
+				background-size: 50px 50px;
+
+				transform: skewX( 45deg );
+
+				transform-origin: center left;
+				width: 10000%;
+				height: 10000%;
+				animation: loading 1s linear infinite;
+			}
+
+			&.animating {
+				background-color: $bgProgressBarInner;
+			}
+		}
+
+		.overlay-progress-bar-text {
+			position: absolute;
+			width: 800px;
+			height: 50px;
+			top: 0;
+			left: 0;
+			text-align: center;
+			color: rgba( 0, 0, 0, 0.9 );
+			font-size: 2em;
+			line-height: 50px;
+		}
+	}
+
+	.overlay-subheader-container {
+		position: absolute;
+		left: 50%;
+		transform: translate( -50%, 0% );
+		width: 600px;
+		height: 300px;
+		text-align: center;
+		bottom: 50px;
+
+		.overlay-subheader {
+			color: $colorPrimary;
+			font-size: 1.8em;
+		}
+
+		.overlay-schedule-container {
+			display: flex;
+			margin-top: 20px;
+			border: 2px solid $colorPrimary;
+			height: 150px;
+			justify-content: space-between;
+
+			.overlay-schedule-day {
+				display: flex;
+				margin: 5px;
+				background-color: $bgScheduleDay;
+				color: $colorFontInvert;
+				flex-direction: column;
+				flex-grow: 1;
+				min-width: 60px;
+				max-width: 100px;
+				overflow-wrap: break-word;
+
+				&.active {
+					background-color: $bgScheduleDayActive;
+					color: $colorFontPrimary;
+				}
+
+				&.inactive {
+					background-color: $bgScheduleDayInactive;
+					color: $colorFontDisabled;
+				}
+
+				.overlay-schedule-title {
+					padding: 5px;
+				}
+
+				.overlay-schedule-content {
+					flex-grow: 1;
+					font-size: 1.5em;
+				}
+			}
+		}
+	}
+}

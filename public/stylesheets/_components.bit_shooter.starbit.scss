@@ -1,0 +1,304 @@
+// sass-lint:disable-all
+// Linting disabled because file is from another author.
+// Source: https://codepen.io/thebabydino/pen/LzlhE (with slight modifications)
+
+@import '../../node_modules/mathsass/dist/math';
+
+// EDITABLE STUFF
+$a: 1em; // small diagonal of rhombus
+$te: 5s; // explosion animation duration
+$tr: 3s; // rotation animation duration
+$shades: dodgerblue royalblue cornflowerblue deepskyblue
+    lightskyblue lightseagreen darkturquoise cadetblue
+    lightblue teal skyblue aqua;
+$of: 1; // opacity factor
+$bc: black; // border of rhombic/ triangular faces
+
+// DO NOT CHANGE STUFF
+$n: 12;
+
+// TRIGONOMETRY STUFF
+$pi: $PI*1rad;
+
+$angle-units:
+  'rad'        'deg'        'grad'          'turn'       '',
+      1   180deg/$pi   200grad/$pi   1turn/(2*$pi)   1/1rad;
+
+@function convert-unit($table, $value-in, $unit-out) {
+  $units: nth($table, 1);
+  $factors: nth($table, 2);
+
+  $idx-in: index($units, unit($value-in));
+  $idx-out: index($units, $unit-out);
+
+  $result: false;
+
+  @if $idx-in and $idx-out {
+    $result:
+      $value-in*nth($factors, $idx-out)/nth($factors, $idx-in);
+  }
+  @else {
+    @warn 'Cannot convert #{unit($value-in)} to $#{$unit-out}.';
+  }
+
+  @return $result;
+}
+
+@function convert-angle($value-in, $unit-out) {
+  @return convert-unit($angle-units, $value-in, $unit-out);
+}
+
+@function rad($value-in) {
+  @return convert-angle($value-in, 'rad');
+}
+
+@function deg($value-in) {
+  @return convert-angle($value-in, 'deg');
+}
+
+@function grad($value-in) {
+  @return convert-angle($value-in, 'grad');
+}
+
+@function turn($value-in) {
+  @return convert-angle($value-in, 'turn');
+}
+
+@function strip-rad($value-in) {
+  @return convert-angle($value-in, '');
+}
+
+
+@function sinu($angle) {
+  @return sin(strip-rad($angle));
+}
+
+@function cosu($angle) {
+  @return cos(strip-rad($angle));
+}
+
+@function tanu($angle) {
+  @return tan(strip-rad($angle));
+}
+
+
+@function asin($value, $unit: 'rad', $precision: 25) {
+  $coeff: 1;
+  $sum: 0;
+  $flag: 0;
+  $sign: 1;
+
+  @if $value > 1 {
+    @warn 'Invalid input.';
+    @return false;
+  }
+
+  @if abs($value) > 1/sqrt(2) {
+    $flag: 1;
+    $sign: $value/abs($value);
+    $value: sqrt(1 - pow($value, 2));
+  }
+
+  $sum: $sum + $coeff*$value;
+
+  @for $i from 1 through $precision {
+    $coeff: $coeff*(2*$i - 1)/(2*$i);
+    $sum: $sum + $coeff*pow($value, 2*$i + 1)/(2*$i + 1);
+  }
+
+  $result: $sign*($flag*$PI/2 + pow(-1, $flag)*$sum);
+
+  @if $unit != '' {
+    $result: convert-angle($result, $unit);
+  }
+
+  @return $result;
+}
+
+@function acos($value, $unit: 'rad', $precision: 25) {
+  $result: pi()/2 - asin($value, '', $precision);
+
+  @if $unit != '' {
+    $result: convert-angle($result, $unit);
+  }
+
+  @return $result;
+}
+
+@function atan($value, $unit: 'rad', $precision: 25) {
+  $value: $value/sqrt(1 + pow($value, 2));
+
+  @return asin($value, $unit, $precision);
+}
+
+// COMPUTED STUFF
+$d2: $a*sqrt(2); // big diagonal of rhombus
+$l: $a*sqrt(3)/2; // side of rhombus
+$hp: $d2/2; // pyramid height
+$hr: 2*$a/sqrt(6); // distance between opposite sides of rhombus
+
+$va: 2*atan(($a/2)/($d2/2)); // acute angle of rhombus
+$oa: $pi - $va; // obtuse angle of rhombus
+$sa: $pi/2 - $va; // skew angle
+$sf: cosu($sa); // scale factor after skew
+$da: $pi/3; // dihedral angle
+$pa: asin(($a/2)/$l, 'rad');
+
+// mixin for central positioning
+@mixin size-pos($w, $h: $w) {
+  @if $w != $h { margin: -$h/2 (-$w/2); }
+  @else { margin: -$w/2; }
+  width: $w; height: $h;
+}
+
+// html, body {
+//   overflow: hidden;
+//   margin: 0;
+//   height: 100%;
+//   perspective: 25em;
+//   background: dimgrey;
+// }
+
+.polyhedron, .polyhedron *, .polyhedron *:before {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform-style: preserve-3d;
+}
+.polyhedron--rhombic-dodecahedron {
+  transform: rotateY(-45deg) rotateX(-45deg);
+  // animation: rot $tr linear infinite;
+}
+// @keyframes rot {
+//   to { transform: rotateY(315deg) rotateX(315deg); }
+// }
+
+@for $i from 0 to $n {
+  $ra: (1 - pow(-1, floor($i/2)%2))*$pi/2 + pow(-1, $i)*$va/2;
+  $rot: if($i%6 < 4,
+    'rotateY(#{$ra}) rotateX(#{$da}) rotateY(#{$ra})',
+    'rotate(#{(1 - pow(-1, $i%2))*$pi/4})');
+  .piece:nth-child(#{$i + 1}) {
+    /*transform:
+      rotate((1 - pow(-1, floor($i/6)))*$pi/2)
+      unquote($rot)
+      translateY($d2/2);*/
+
+      transform:
+        rotate((1 - pow(-1, floor($i/6)))*$pi/2)
+        unquote($rot)
+        translateY($d2)
+        rotateX($pi)
+        translateY($d2/2+0.2em);
+    //animation: ani#{$i + 1} ($te) linear;/* infinite alternate;*/
+    // .face--base-rhombus {
+    //   $c: rgba(nth($shades, $i + 1), $of);
+    //   background: linear-gradient(-45deg,
+    //       lighten($c, 15%), darken($c, 15%), lighten($c, 15%));
+    // }
+    @for $j from 0 to 4 {
+      .face--lateral-triangle:nth-child(#{$j + 1}):before {
+        // $c: rgba(yellow, $of);
+        // $c2: rgba(darkorange, $of);
+        // background: linear-gradient(random(360)*1deg, $c, $c2);
+      }
+    }
+  }
+
+  .comp-bs-starbit:nth-child(2n+0) .face--lateral-triangle:before {
+        // $c: rgba(yellow, $of);
+        // $c2: rgba(darkorange, $of);
+        // background: linear-gradient(random(360)*1deg, $c, $c2);
+        background: hsla(random(360), 100%, 50%, 1.0 );
+  }
+  .comp-bs-starbit:nth-child(2n+1) .face--lateral-triangle:before {
+        // $c: rgba(yellow, $of);
+        // $c2: rgba(darkorange, $of);
+        // background: linear-gradient(random(360)*1deg, $c, $c2);
+        background: hsla(random(360), 100%, 100%, 1.0 );
+  }
+  .comp-bs-starbit:nth-child(3n+0) .face--lateral-triangle:before {
+        // $c: rgba(yellow, $of);
+        // $c2: rgba(darkorange, $of);
+        // background: linear-gradient(random(360)*1deg, $c, $c2);
+        background: hsla(random(360), 100%, 50%, 1.0 );
+  }
+  .comp-bs-starbit:nth-child(4n+0) .face--lateral-triangle:before {
+        // $c: rgba(yellow, $of);
+        // $c2: rgba(darkorange, $of);
+        // background: linear-gradient(random(360)*1deg, $c, $c2);
+        background: hsla(random(360), 100%, 100%, 1.0 );
+  }
+  // @keyframes ani#{$i + 1} {
+  //   0%, 20% {
+  //     transform:
+  //       rotate((1 - pow(-1, floor($i/6)))*$pi/2)
+  //       unquote($rot)
+  //       translateY($d2/2);
+  //   }
+  //   40% {
+  //     transform:
+  //       rotate((1 - pow(-1, floor($i/6)))*$pi/2)
+  //       unquote($rot)
+  //       translateY($d2);
+  //   }
+  //   60% {
+  //     transform:
+  //       rotate((1 - pow(-1, floor($i/6)))*$pi/2)
+  //       unquote($rot)
+  //       translateY($d2)
+  //       rotateX($pi);
+  //   }
+  //   80%, 100% {
+  //     transform:
+  //       rotate((1 - pow(-1, floor($i/6)))*$pi/2)
+  //       unquote($rot)
+  //       translateY($d2)
+  //       rotateX($pi)
+  //       translateY($d2/2);
+  //   }
+  // }
+}
+
+.face {
+  @include size-pos($l);
+  backface-visibility: hidden;
+}
+.face--lateral-triangle {
+  overflow: hidden;
+  transform-origin: 50% 100%;
+  @for $i from 0 to 4 {
+    &:nth-child(#{$i + 1}) {
+      $ra: (1 - pow(-1, floor($i/2)%2))*$PI/2*1rad +
+           pow(-1, $i)*$va/2;
+    //   box-shadow: inset pow(-1, $i)*.0625em -.125em $bc;
+      transform:
+        translateY(-$l/2)
+        rotateY($ra)
+        translateZ($hr/2)
+        translateX(pow(-1, $i)*$l/2*sinu($sa))
+        rotateX($pi/2 - $da)
+        skewX(pow(-1, $i + 1)*$sa)
+        scaleY($sf);
+      &:before {
+        @include size-pos($a);
+        transform: scaleY(1/$sf)
+                   skewX(pow(-1, $i)*$sa)
+                   rotate(pow(-1, $i + 1)*($PI*1rad/2 - $oa/2))
+                   translateX(pow(-1, $i + 1)*49.5%);
+        // box-shadow:
+        //   inset pow(-1, $i + 1)*.0625em 0 rgba($bc, 1 - $of);
+        // background: hsla(random(360), 100%, 50%, 1);
+        content: '';
+      }
+    }
+  }
+}
+// .face--base-rhombus {
+//   transform:
+//     rotateX(-$pi/2)
+//     rotate(-$va/2)
+//     skewX($sa)
+//     scaleY($sf);
+//     // box-shadow: inset 0 0 0 .0625em $bc;
+//     background: hsla(random(360), 100%, 50%, .2);
+// }

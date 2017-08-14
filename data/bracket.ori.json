@@ -1,0 +1,163 @@
+{
+	"rounds": [
+		{
+			"id": 0,
+			"name": "prelimination",
+			"matches": [
+				{
+					"id": "P1",
+					"racers": {
+						"top":
+						{
+							"seed": 32,
+							"name": "Phant_TV"
+						},
+						"bot":
+						{
+							"seed": 33,
+							"name": "mrasmus"
+						}
+					},
+					"to": "A1"
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "round of 32",
+			"matches": [
+				{
+					"id": "A1",
+					"racers": {
+						"top":
+						{
+							"seed": 1,
+							"name": "Hetfield90"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "P1"
+						}
+					},
+					"to": "B1"
+				},
+				{
+					"id": "A2",
+					"racers": {
+						"top":
+						{
+							"seed": 17,
+							"name": "RedR3dRum"
+						},
+						"bot":
+						{
+							"seed": 16,
+							"name": "Grimelios"
+						}
+					},
+					"to": "B1"
+				},
+				{
+					"id": "A3",
+					"racers": {
+						"top":
+						{
+							"seed": 9,
+							"name": "JHobz296"
+						},
+						"bot":
+						{
+							"seed": 24,
+							"name": "icex123"
+						}
+					},
+					"to": "B2"
+				},
+				{
+					"id": "A4",
+					"racers": {
+						"top":
+						{
+							"seed": 25,
+							"name": "bdbrufus"
+						},
+						"bot":
+						{
+							"seed": 8,
+							"name": "dU_Raziel"
+						}
+					},
+					"to": "B2"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"name": "round of 16",
+			"matches": [
+				{
+					"id": "B1",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A1"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A2"
+						}
+					},
+					"to": "C1"
+				},
+				{
+					"id": "B2",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A3"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A4"
+						}
+					},
+					"to": "C1"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"name": "quarterfinals",
+			"matches": [
+				{
+					"id": "C1",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B1"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B2"
+						}
+					},
+					"to": "D1"
+				}
+			]
+		}
+	]
+}

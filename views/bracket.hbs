@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/stylesheets/bracket.min.css" />
+<div class="bracket-round-header-container">
+	{{#each rounds}}
+		<div class="bracket-round-header">{{name}}</div>
+	{{/each}}
+</div>
+<div id="bracketContainer" class="bracket-container {{#if partial}}partial {{division}}{{/if}}">
+	{{#each rounds}}
+		<div id="round-{{id}}" class="round-container">
+			{{#each matches}}
+				{{> bracket_match this}}
+			{{/each}}
+		</div>
+	{{/each}}
+</div>
+<script src="/javascripts/bracket.js"></script>

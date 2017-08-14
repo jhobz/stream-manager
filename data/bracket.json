@@ -1,0 +1,633 @@
+{
+	"rounds": [
+		{
+			"id": 0,
+			"name": "prelimination",
+			"matches": [
+				{
+					"id": "P1",
+					"racers": {
+						"top":
+						{
+							"seed": 32,
+							"name": "Phant_TV"
+						},
+						"bot":
+						{
+							"seed": 33,
+							"name": "mrasmus"
+						}
+					},
+					"to": "A1"
+				},
+				{
+					"id": "P2",
+					"racers": {
+						"top":
+						{
+							"seed": 29,
+							"name": "SnoopyMKWii"
+						},
+						"bot":
+						{
+							"seed": 36,
+							"name": "Pirox314"
+						}
+					},
+					"to": "A8"
+				},
+				{
+					"id": "P3",
+					"racers": {
+						"top":
+						{
+							"seed": 30,
+							"name": "rivid31"
+						},
+						"bot":
+						{
+							"seed": 35,
+							"name": "ogNdrahciR"
+						}
+					},
+					"to": "A9"
+				},
+				{
+					"id": "P4",
+					"racers": {
+						"top":
+						{
+							"seed": 31,
+							"name": "Smashfully"
+						},
+						"bot":
+						{
+							"seed": 34,
+							"name": "jelluh24"
+						}
+					},
+					"to": "A16"
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "round of 32",
+			"matches": [
+				{
+					"id": "A1",
+					"racers": {
+						"top":
+						{
+							"seed": 1,
+							"name": "Hetfield90"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "P1"
+						}
+					},
+					"to": "B1"
+				},
+				{
+					"id": "A2",
+					"racers": {
+						"top":
+						{
+							"seed": 17,
+							"name": "RedR3dRum"
+						},
+						"bot":
+						{
+							"seed": 16,
+							"name": "Grimelios"
+						}
+					},
+					"to": "B1"
+				},
+				{
+					"id": "A3",
+					"racers": {
+						"top":
+						{
+							"seed": 9,
+							"name": "JHobz296"
+						},
+						"bot":
+						{
+							"seed": 24,
+							"name": "icex123"
+						}
+					},
+					"to": "B2"
+				},
+				{
+					"id": "A4",
+					"racers": {
+						"top":
+						{
+							"seed": 25,
+							"name": "bdbrufus"
+						},
+						"bot":
+						{
+							"seed": 8,
+							"name": "dU_Raziel"
+						}
+					},
+					"to": "B2"
+				},
+				{
+					"id": "A5",
+					"racers": {
+						"top":
+						{
+							"seed": 5,
+							"name": "XepiccatX"
+						},
+						"bot":
+						{
+							"seed": 28,
+							"name": "Hnaidrelle"
+						}
+					},
+					"to": "B3"
+				},
+				{
+					"id": "A6",
+					"racers": {
+						"top":
+						{
+							"seed": 21,
+							"name": "MrRandomson"
+						},
+						"bot":
+						{
+							"seed": 12,
+							"name": "Brynhold2"
+						}
+					},
+					"to": "B3"
+				},
+				{
+					"id": "A7",
+					"racers": {
+						"top":
+						{
+							"seed": 13,
+							"name": "TheRooseisLoose89"
+						},
+						"bot":
+						{
+							"seed": 20,
+							"name": "chicken_supreme"
+						}
+					},
+					"to": "B4"
+				},
+				{
+					"id": "A8",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "P2"
+						},
+						"bot":
+						{
+							"seed": 4,
+							"name": "trojandude12"
+						}
+					},
+					"to": "B4"
+				},
+				{
+					"id": "A9",
+					"racers": {
+						"top":
+						{
+							"seed": 3,
+							"name": "Sigmasin"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "P3"
+						}
+					},
+					"to": "B5"
+				},
+				{
+					"id": "A10",
+					"racers": {
+						"top":
+						{
+							"seed": 19,
+							"name": "Cheese__Lover"
+						},
+						"bot":
+						{
+							"seed": 14,
+							"name": "Monkley6"
+						}
+					},
+					"to": "B5"
+				},
+				{
+					"id": "A11",
+					"racers": {
+						"top":
+						{
+							"seed": 11,
+							"name": "qqstafoo"
+						},
+						"bot":
+						{
+							"seed": 22,
+							"name": "SkyFouxx"
+						}
+					},
+					"to": "B6"
+				},
+				{
+					"id": "A12",
+					"racers": {
+						"top":
+						{
+							"seed": 27,
+							"name": "Kirefel"
+						},
+						"bot":
+						{
+							"seed": 6,
+							"name": "EloJimmini"
+						}
+					},
+					"to": "B6"
+				},
+				{
+					"id": "A13",
+					"racers": {
+						"top":
+						{
+							"seed": 7,
+							"name": "Lucidus16"
+						},
+						"bot":
+						{
+							"seed": 26,
+							"name": "MeldonTaragon"
+						}
+					},
+					"to": "B7"
+				},
+				{
+					"id": "A14",
+					"racers": {
+						"top":
+						{
+							"seed": 23,
+							"name": "Snow__Flame"
+						},
+						"bot":
+						{
+							"seed": 10,
+							"name": "Terra21"
+						}
+					},
+					"to": "B7"
+				},
+				{
+					"id": "A15",
+					"racers": {
+						"top":
+						{
+							"seed": 15,
+							"name": "Vulajin"
+						},
+						"bot":
+						{
+							"seed": 18,
+							"name": "Odiahn"
+						}
+					},
+					"to": "B8"
+				},
+				{
+					"id": "A16",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "P4"
+						},
+						"bot":
+						{
+							"seed": 2,
+							"name": "vg_hydra"
+						}
+					},
+					"to": "B8"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"name": "round of 16",
+			"matches": [
+				{
+					"id": "B1",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A1"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A2"
+						}
+					},
+					"to": "C1"
+				},
+				{
+					"id": "B2",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A3"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A4"
+						}
+					},
+					"to": "C1"
+				},
+				{
+					"id": "B3",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A5"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A6"
+						}
+					},
+					"to": "C2"
+				},
+				{
+					"id": "B4",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A7"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A8"
+						}
+					},
+					"to": "C2"
+				},
+				{
+					"id": "B5",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A9"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A10"
+						}
+					},
+					"to": "C3"
+				},
+				{
+					"id": "B6",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A11"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A12"
+						}
+					},
+					"to": "C3"
+				},
+				{
+					"id": "B7",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A13"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A14"
+						}
+					},
+					"to": "C4"
+				},
+				{
+					"id": "B8",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A15"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "A16"
+						}
+					},
+					"to": "C4"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"name": "quarterfinals",
+			"matches": [
+				{
+					"id": "C1",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B1"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B2"
+						}
+					},
+					"to": "D1"
+				},
+				{
+					"id": "C2",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B3"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B4"
+						}
+					},
+					"to": "D1"
+				},
+				{
+					"id": "C3",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B5"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B6"
+						}
+					},
+					"to": "D2"
+				},
+				{
+					"id": "C4",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B7"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "B8"
+						}
+					},
+					"to": "D2"
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "semifinals",
+			"matches": [
+				{
+					"id": "D1",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "C1"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "C2"
+						}
+					},
+					"to": "E1"
+				},
+				{
+					"id": "D2",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "C3"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "C4"
+						}
+					},
+					"to": "E1"
+				}
+			]
+		},
+		{
+			"id": 5,
+			"name": "finals",
+			"matches": [
+				{
+					"id": "E1",
+					"racers": {
+						"top":
+						{
+							"seed": null,
+							"name": "",
+							"from": "D1"
+						},
+						"bot":
+						{
+							"seed": null,
+							"name": "",
+							"from": "D2"
+						}
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,40 @@
+/* Reset */
+html,
+body,
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-family: 'Bebas Kai';
+}
+
+.cube {
+	transform-style: preserve-3d;
+	// perspective: 500px;
+	// animation: move-origin infinite 2s;
+
+	.side {
+		position: absolute;
+		background: rgba( deepskyblue, .2 );
+		width: 200px;
+		height: 200px;
+		border: 1px solid rgba( 0, 0, 0, .5 );
+	}
+
+	.front  { transform:                  translateZ(100px); }
+	.top    { transform: rotateX( 90deg)  translateZ(100px); }
+	.right  { transform: rotateY( 90deg)  translateZ(100px); }
+	.left   { transform: rotateY(-90deg)  translateZ(100px); }
+	.bottom { transform: rotateX(-90deg)  translateZ(100px); }
+	.back   { transform: rotateY(-180deg) translateZ(100px); }
+}
+
+@keyframes move-origin {
+	0%    { perspective-origin: 0%     0%; }
+	25%   { perspective-origin: 100%   0%; }
+	50%   { perspective-origin: 100% 100%; }
+	75%   { perspective-origin: 0%   100%; }
+	100%  { perspective-origin: 0%     0%; }
+}

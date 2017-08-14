@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/stylesheets/overlays.min.css" />
+<div class="overlay-background">
+</div>
+<video class="overlay-background-video" autoplay muted loop>
+	<source src="/videos/bg.mp4" type="video/mp4">
+	<source src="/videos/bg.ogg" type="video/ogg">
+	<source src="/videos/bg.webm" type="video/webm">
+	Something went wrong (video tag not supported).
+</video>
+<div class="overlay-container">
+	<div class="overlay-social-container">
+		<div class="overlay-social-item twitter">
+			<div class="overlay-social-logo"></div>
+			<div class="overlay-social-text">@J_Hobz</div>
+			<div class="overlay-social-accent"></div>
+		</div>
+		<div class="overlay-social-item twitch">
+			<div class="overlay-social-logo"></div>
+			<div class="overlay-social-text">jhobz296</div>
+			<div class="overlay-social-accent"></div>
+		</div>
+		<div class="overlay-social-item youtube">
+			<div class="overlay-social-logo"></div>
+			<div class="overlay-social-text">jeffrey296</div>
+			<div class="overlay-social-accent"></div>
+		</div>
+	</div>
+	<div class="overlay-header-container">
+		<h1 class="overlay-header">Loading stream</h1>
+		<div class="overlay-progress-bar-outer">
+			<div class="overlay-progress-bar-inner animating"></div>
+			<div class="overlay-progress-bar-text">-3:10</div>
+		</div>
+	</div>
+	<div class="overlay-subheader-container">
+		<h2 class="overlay-subheader">Coming up</h2>
+		<h1>Dark Souls casual playthrough</h1>
+		{{> schedule}}
+	</div>
+</div>
+<script src="/javascripts/overlays.splash.js"></script>

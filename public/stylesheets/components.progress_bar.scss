@@ -1,0 +1,133 @@
+/* Variables */
+/* Layout base colors */
+// TODO: Move base colors to common variables file
+$colorPrimary: #1976d2;
+$colorAccent: something;
+$colorFontPrimary: #f1f1f1;
+$colorFontInvert: #1a1a1a;
+
+/* Colors */
+$colorFontProgressText: rgba( 0, 0, 0, 0.85 );
+$colorGoalMet: #23ad41;
+
+@keyframes loading {
+	from { background-position: 0 0; }
+	to { background-position: 25px 25px; }
+}
+
+body {
+	background-color: $colorFontInvert;
+}
+
+.comp-progbar-outer {
+	position: relative;
+	background-color: $colorFontPrimary;
+	border: 2px solid #4d4d4d;
+	color: $colorFontProgressText;
+
+	.comp-progbar-inner {
+		position: absolute;
+		background-color: $colorPrimary;
+		// background-image gradient set in specific direction rules
+		bottom: 0;
+		left: 0;
+		overflow: hidden;
+
+		// TODO: Move barbershop pole animation to mixin
+		&::before {
+			position: absolute;
+			content: '';
+			background-image: linear-gradient(
+				-45deg,
+				rgba( 0, 0, 0, 0.1 ) 25%,
+				transparent 25%,
+				transparent 50%,
+				rgba( 0, 0, 0, 0.1 ) 50%,
+				rgba( 0, 0, 0, 0.1 ) 75%,
+				transparent 75%,
+				transparent
+			);
+			background-size: 50px 50px;
+
+			transform-origin: center left;
+			width: 10000%;
+			height: 10000%;
+
+			animation: loading 2s linear infinite;
+		}
+	}
+
+	.comp-progbar-text {
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	&.horizontal {
+		width: 240px;
+		height: 50px;
+
+		.comp-progbar-inner {
+			background-image: linear-gradient(
+				to bottom,
+				rgba( 105, 185, 214, 1 ) 0%,
+				$colorPrimary 41%,
+				rgba( 18, 96, 168, 1 ) 100%
+			);
+			height: 50px;
+
+			&.met {
+				background-color: $colorGoalMet;
+				background-image: linear-gradient(
+					to bottom,
+					rgba( 43, 214, 80, 1 ) 0%,
+					$colorGoalMet 41%,
+					rgba( 31, 143, 56, 1 ) 100%
+				);
+			}
+		}
+
+		.comp-progbar-text {
+			font-size: 2.4em;
+			line-height: 50px;
+			width: 240px;
+			height: 50px;
+		}
+	}
+
+	&.vertical {
+		height: 240px;
+		width: 75px;
+
+		.comp-progbar-inner {
+			background-image: linear-gradient(
+				to right,
+				rgba( 105, 185, 214, 1 ) 0%,
+				$colorPrimary 41%,
+				rgba( 18, 96, 168, 1 ) 100%
+			);
+			width: 75px;
+
+			&.met {
+				background-color: $colorGoalMet;
+				background-image: linear-gradient(
+					to right,
+					rgba( 43, 214, 80, 1 ) 0%,
+					$colorGoalMet 41%,
+					rgba( 31, 143, 56, 1 ) 100%
+				);
+			}
+		}
+
+		.comp-progbar-text {
+			display: flex;
+			font-size: 2.4em;
+			height: 240px;
+			width: 75px;
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
+}

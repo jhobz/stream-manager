@@ -1,0 +1,74 @@
+@import '_components.bit_shooter.starbit';
+
+@keyframes bitfly {
+	// from {
+	// 	transform: translate3d( 137.5px, 437.5px, 100px );
+	// }
+	to {
+		transform: translate3d( 137.5px, 137.5px, -100px );
+	}
+}
+.comp-bs-container {
+	position: relative;
+	background-color: black;
+	width: 900px;
+	height: 900px;
+	perspective: 200px;
+	perspective-origin: 16.67% 16.67%;
+
+	.origin {
+		position: absolute;
+		background-color: blue;
+		top: 16.67%;
+		left: 16.67%;
+		width: 5px;
+		height: 5px;
+		z-index: 100;
+	}
+
+	.comp-bs-bit {
+		position: absolute;
+		width: 25px;
+		height: 25px;
+		text-align: center;
+		z-index: 2;
+		transform: translate3d( 137.5px, 437.5px, 100px );
+		animation: bitfly 0.5s linear;// infinite;
+
+		&.comp-bs-starbit {
+			// transform: scale( 0.125 ) translate3d( 137.5px, 437.5px, 100px );
+		}
+
+		&.comp-bs-starbit:nth-child(odd) {
+			// background-color: tomato;
+			// color: #f1f1f1;
+		}
+		&.comp-bs-starbit:nth-child(even) {
+			// background-color: green;
+			// color: #f1f1f1;
+		}
+	}
+
+	.comp-bs-target {
+		position: absolute;
+		width: 200px;
+		height: 200px;
+		// line-height: 50px;
+		// text-align: center;
+		z-index: 1;
+		transform: translate3d( 50px, 50px, -100px );
+		transition: transform 0.1s linear;
+
+		&.big {
+			// transform: scale( 2 ) translate3d( 50px, 400px );
+			transform: translate3d( 50px, 50px, -100px ) scale(1.2);
+		}
+
+		&.comp-bs-luma {
+			// background-color: deepskyblue;
+			background-image: url( '/images/hungryluma.png' );
+			background-size: 200px 200px;
+			color: #f1f1f1;
+		}
+	}
+}
