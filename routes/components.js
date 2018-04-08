@@ -10,7 +10,11 @@ router.get( '/progress_bar/subgoal', function ( req, res, next ) {
 	} );
 } );
 
-router.get( '/bits', function ( req, res, next ) {
+router.get( '/bits/boxes', function ( req, res, next ) {
+	res.render( 'box_waterfall', { title: 'Bit Shooter' } );
+} );
+
+router.get( '/bits/starbits', function ( req, res, next ) {
 	res.render( 'bit_shooter', { title: 'Bit Shooter' } );
 } );
 

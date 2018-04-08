@@ -9,11 +9,12 @@ $colorFontDisabled: #666;
 
 /* Backgrounds */
 $bgProgressBarInner: $colorPrimary;
-$bgProgressBarInnerComplete: gold;
+$bgProgressBarInnerComplete: #ffa726; //#fdd835;
 $bgProgressBarOuter: white;
 $bgScheduleDay: rgba( 255, 255, 255, 0.7 );
 $bgScheduleDayActive: rgba( 25, 118, 210, 0.7 );
 $bgScheduleDayInactive: rgba( 64, 64, 64, 0.7 );
+$bgScheduleDayHighlight: $bgProgressBarInnerComplete;
 $bgSocial: rgba( 255, 255, 255, 0.7 );
 $bgSocialAccentDefault: gold; // Unused
 $bgVideoOverlay: rgba( 0, 0, 0, 0.6 );
@@ -51,7 +52,7 @@ $percentDetailDelay: $durationSlide / $durationItemCycle * 100;
 /* Progress bar */
 @keyframes loading {
 	from { background-position: 0 0; }
-	to { background-position: 25px 25px; }
+	to { background-position: 50px 50px; }
 }
 
 /* Social items */
@@ -165,7 +166,6 @@ video.overlay-background-video {
 				&:nth-child( #{$i} ) {
 					animation-delay: ( $i - 1 ) * $durationItemCycle;
 				}
-
 			}
 
 			.overlay-social-logo {
@@ -237,20 +237,17 @@ video.overlay-background-video {
 			height: 50px;
 			margin-left: -27px;
 			background-color: $bgProgressBarInnerComplete;
-			background-image: linear-gradient(
-				to bottom,
-				rgba( 0, 0, 0, 0 ) 0%,
-				rgba( 0, 0, 0, 0.6 ) 100%
-			);
+			// background-image: linear-gradient(
+			// 	to bottom,
+			// 	rgba( 0, 0, 0, 0 ) 0%,
+			// 	rgba( 0, 0, 0, 0.6 ) 100%
+			// );
 			transform: skewX( -45deg );
 			overflow: hidden;
 
 			// TODO: Move barbershop pole animation to mixin
-			&::before {
-				position: absolute;
-				content: '';
 				background-image: linear-gradient(
-					-45deg,
+					-90deg,
 					rgba( 0, 0, 0, 0.1 ) 25%,
 					transparent 25%,
 					transparent 50%,
@@ -259,15 +256,15 @@ video.overlay-background-video {
 					transparent 75%,
 					transparent
 				);
-				background-size: 50px 50px;
+				background-size: 100px 100px;
 
-				transform: skewX( 45deg );
+				// transform: skewX( 45deg );
 
-				transform-origin: center left;
-				width: 10000%;
-				height: 10000%;
+				// transform-origin: center left;
+				// width: 10000%;
+				// height: 10000%;
 				animation: loading 1s linear infinite;
-			}
+				overflow: hidden;
 
 			&.animating {
 				background-color: $bgProgressBarInner;
@@ -291,18 +288,21 @@ video.overlay-background-video {
 		position: absolute;
 		left: 50%;
 		transform: translate( -50%, 0% );
-		width: 600px;
+		width: 800px;
 		height: 300px;
 		text-align: center;
 		bottom: 50px;
+		font-size: 1.7em; // TODO: Remove upon re-enabling schedule
 
 		.overlay-subheader {
 			color: $colorPrimary;
-			font-size: 1.8em;
+			// font-size: 1.8em; // TODO: Uncomment upon re-enabling schedule
+			// font-size: 1.0em; // TODO: Remove upon re-enabling schedule
 		}
 
 		.overlay-schedule-container {
-			display: flex;
+			// display: flex;
+			display: none; // Temporarily removing schedule
 			margin-top: 20px;
 			border: 2px solid $colorPrimary;
 			height: 150px;
@@ -316,17 +316,21 @@ video.overlay-background-video {
 				flex-direction: column;
 				flex-grow: 1;
 				min-width: 60px;
-				max-width: 100px;
+				max-width: 130px;
 				overflow-wrap: break-word;
 
 				&.active {
-					background-color: $bgScheduleDayActive;
+					background-color: $bgScheduleDayActive !important; // TODO: Find a better way to override .highlight than !important
 					color: $colorFontPrimary;
 				}
 
 				&.inactive {
 					background-color: $bgScheduleDayInactive;
 					color: $colorFontDisabled;
+				}
+
+				&.highlight {
+					background-color: $bgScheduleDayHighlight;
 				}
 
 				.overlay-schedule-title {

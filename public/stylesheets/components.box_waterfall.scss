@@ -1,0 +1,16 @@
+.comp-bs-container {
+	width: 900px;
+	height: 900px;
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 1px;
+		height: 1px;
+	}
+
+	img#init { z-index: 3; }
+	img#loop { z-index: 2; }
+	img#end  { z-index: 1; }
+}

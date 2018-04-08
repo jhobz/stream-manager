@@ -1,7 +1,7 @@
 $( function () {
 	var progressTimer,
 		startTime = Date.now(),
-		endTime = startTime + ( .1 * 60 * 1000 );
+		endTime = startTime + ( 5 * 60 * 1000 );
 
 	var $progressBar = $( '.overlay-progress-bar-outer' );
 	progressTimer = setInterval( function () {

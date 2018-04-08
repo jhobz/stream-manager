@@ -114,12 +114,13 @@ twitch.getSubPoints = function () {
 	);
 };
 
-twitch.getSubscribers().then( out => console.log( out ) );
+// twitch.getSubscribers().then( out => console.log( out ) );
 
 // twitch._authenticate( ['channel_check_subscription'] ).then( token => {
+// 	twitch._getIdForUser( 'jhobz296' ).then( id => console.log(id) );
 // 	twitch._getSubscribers( token ).then( out => console.log(out));
 // 	twitch._checkChannelSubscription( token, 'elehex' ).then( out => console.log(out))
 // 	}
-// );
+// } );
 
 module.exports = twitch;
