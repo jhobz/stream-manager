@@ -301,7 +301,7 @@ video.overlay-background-video {
 		}
 
 		.overlay-schedule-container {
-			// display: flex;
+			display: flex;
 			display: none; // Temporarily removing schedule
 			margin-top: 20px;
 			border: 2px solid $colorPrimary;
